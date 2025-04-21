@@ -1,6 +1,7 @@
 package edu.nugi.service.impl;
 
 import edu.nugi.dto.Item;
+import edu.nugi.entity.ItemEntity;
 import edu.nugi.repository.ItemRepository;
 import edu.nugi.service.ItemService;
 import lombok.RequiredArgsConstructor;

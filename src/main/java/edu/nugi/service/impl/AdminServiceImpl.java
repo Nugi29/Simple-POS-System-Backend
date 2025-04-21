@@ -1,6 +1,7 @@
 package edu.nugi.service.impl;
 
 import edu.nugi.dto.Admin;
+import edu.nugi.entity.AdminEntity;
 import edu.nugi.repository.AdminRepository;
 import edu.nugi.service.AdminService;
 import lombok.RequiredArgsConstructor;

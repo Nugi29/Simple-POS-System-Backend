@@ -63,14 +63,14 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<Order> getCustomerOrderHistory(Integer id) {
-        CustomerEntity customerEntity = repository.findById(id).orElse(null);
-        if (customerEntity != null) {
-            List<Order> orderList = new ArrayList<>();
-            customerEntity.getOrders().forEach(orderEntity -> {
-                orderList.add(mapper.map(orderEntity, Order.class));
-            });
-            return orderList;
-        }
+//        CustomerEntity customerEntity = repository.findById(id).orElse(null);
+//        if (customerEntity != null) {
+//            List<Order> orderList = new ArrayList<>();
+//            customerEntity.getOrders().forEach(orderEntity -> {
+//                orderList.add(mapper.map(orderEntity, Order.class));
+//            });
+//            return orderList;
+//        }
         return null;
 
     }
