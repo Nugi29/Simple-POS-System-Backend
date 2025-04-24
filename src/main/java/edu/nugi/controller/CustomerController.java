@@ -3,6 +3,7 @@ package edu.nugi.controller;
 import edu.nugi.dto.Customer;
 import edu.nugi.dto.Order;
 import edu.nugi.service.CustomerService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +11,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/customer")
+@CrossOrigin
+@RequiredArgsConstructor
 public class CustomerController {
 
     @Autowired

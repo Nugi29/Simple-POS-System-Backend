@@ -4,15 +4,16 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Date;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
+@Table(name = "item")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Table(name = "item")
 public class ItemEntity {
-
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
@@ -35,5 +36,11 @@ public class ItemEntity {
     @Basic
     @Column(name = "doexpire")
     private Date doexpire;
+    @ManyToOne
+    @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
+    private CategoryEntity category;
+    @OneToMany(mappedBy = "item")
+    private Collection<OrderitemEntity> orderitems;
+
 
 }

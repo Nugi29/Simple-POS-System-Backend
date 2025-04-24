@@ -1,7 +1,11 @@
 package edu.nugi.entity;
 
 import jakarta.persistence.*;
+
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Objects;
 
 @Entity
 @Table(name = "orderitem")
@@ -10,7 +14,6 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class OrderitemEntity {
-
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
@@ -24,5 +27,12 @@ public class OrderitemEntity {
     @Basic
     @Column(name = "subtotal")
     private Double subtotal;
+    @ManyToOne
+    @JoinColumn(name = "item_id", referencedColumnName = "id", nullable = false)
+    private ItemEntity item;
+    @ManyToOne
+    @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
+    private OrderEntity order;
+
 
 }

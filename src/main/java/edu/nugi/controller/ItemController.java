@@ -2,6 +2,7 @@ package edu.nugi.controller;
 
 import edu.nugi.dto.Item;
 import edu.nugi.service.ItemService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,6 +10,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/item")
+@CrossOrigin
+@RequiredArgsConstructor
 public class ItemController {
 
     @Autowired

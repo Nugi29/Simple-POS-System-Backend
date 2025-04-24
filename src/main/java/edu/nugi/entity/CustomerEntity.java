@@ -1,7 +1,12 @@
 package edu.nugi.entity;
 
 import jakarta.persistence.*;
+
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Table(name = "customer")
@@ -29,5 +34,8 @@ public class CustomerEntity {
     @Basic
     @Column(name = "preferences")
     private String preferences;
+    @OneToMany(mappedBy = "customer")
+    private Collection<OrderEntity> orders;
+
 
 }

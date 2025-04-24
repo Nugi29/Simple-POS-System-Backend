@@ -3,6 +3,8 @@ package edu.nugi.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Collection;
+
 @Entity
 @Table(name = "admin")
 @Data
@@ -32,5 +34,7 @@ public class AdminEntity {
     @Basic
     @Column(name = "phone")
     private String phone;
+    @OneToMany(mappedBy = "admin")
+    private Collection<OrderEntity> orders;
 
 }

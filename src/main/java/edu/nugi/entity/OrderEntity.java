@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Timestamp;
+import java.util.Collection;
 
 @Entity
 @Table(name = "order")
@@ -28,5 +29,16 @@ public class OrderEntity {
     @Basic
     @Column(name = "total")
     private Double total;
+    @ManyToOne
+    @JoinColumn(name = "customer_id", referencedColumnName = "id", nullable = false)
+    private CustomerEntity customer;
+    @ManyToOne
+    @JoinColumn(name = "admin_id", referencedColumnName = "id", nullable = false)
+    private AdminEntity admin;
+    @ManyToOne
+    @JoinColumn(name = "paymentmethod_id", referencedColumnName = "id", nullable = false)
+    private PaymentmethodEntity paymentmethod;
+    @OneToMany(mappedBy = "order")
+    private Collection<OrderitemEntity> orderitems;
 
 }
