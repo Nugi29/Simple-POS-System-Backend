@@ -59,4 +59,17 @@ public class ItemServiceImpl implements ItemService {
         return itemList;
 
     }
+
+    @Override
+    public List<Item> searchByCategory(Integer categoryId) {
+        List<ItemEntity> byCategoryId = repository.findByCategoryId(categoryId);
+        List<Item> itemList = new ArrayList<>();
+        byCategoryId.forEach(itemEntity -> {
+            itemList.add(mapper.map(itemEntity, Item.class));
+        });
+        return itemList;
+
+    }
+
+
 }

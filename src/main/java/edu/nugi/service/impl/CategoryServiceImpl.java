@@ -28,4 +28,9 @@ public class CategoryServiceImpl implements CategoryService {
         });
         return categoryList;
     }
+
+    @Override
+    public void addCategory(Category category) {
+        repository.save(mapper.map(category, CategoryEntity.class));
+    }
 }

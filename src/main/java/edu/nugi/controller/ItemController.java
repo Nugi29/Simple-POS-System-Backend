@@ -41,9 +41,17 @@ public class ItemController {
     public Item searchById(@PathVariable Integer id) {
         return service.searchById(id);
     }
+
     @GetMapping("/search-by-name/{name}")
     public List<Item> searchByName(@PathVariable String name) {
         return service.searchByName(name);
     }
+
+    @GetMapping("/search-by-category/{categoryId}")
+    public List<Item> searchByCategory(@PathVariable Integer categoryId) {
+        return service.searchByCategory(categoryId);
+    }
+
+
 
 }

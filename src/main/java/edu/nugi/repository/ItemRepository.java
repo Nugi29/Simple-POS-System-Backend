@@ -7,4 +7,8 @@ import java.util.List;
 
 public interface ItemRepository extends JpaRepository<ItemEntity, Integer> {
     List<ItemEntity> findByName(String name);
+
+    List<ItemEntity> findByCategoryId(Integer categoryId);
 }
+
+

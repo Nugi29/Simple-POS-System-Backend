@@ -16,4 +16,6 @@ public interface ItemService {
     Item searchById(Integer id);
 
     List<Item> searchByName(String name);
+
+    List<Item> searchByCategory(Integer categoryId);
 }
