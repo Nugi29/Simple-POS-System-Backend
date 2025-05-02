@@ -1,5 +1,6 @@
 package edu.nugi.repository;
 
+import edu.nugi.dto.Item;
 import edu.nugi.entity.ItemEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -9,6 +10,8 @@ public interface ItemRepository extends JpaRepository<ItemEntity, Integer> {
     List<ItemEntity> findByName(String name);
 
     List<ItemEntity> findByCategoryId(Integer categoryId);
+
+    Item findByCode(String code);
 }
 
 

@@ -18,4 +18,6 @@ public interface ItemService {
     List<Item> searchByName(String name);
 
     List<Item> searchByCategory(Integer categoryId);
+
+    Item searchByCode(String code);
 }

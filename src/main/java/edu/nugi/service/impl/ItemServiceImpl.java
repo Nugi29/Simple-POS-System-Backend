@@ -71,5 +71,12 @@ public class ItemServiceImpl implements ItemService {
 
     }
 
+    @Override
+    public Item searchByCode(String code) {
+        return mapper.map(repository.findByCode(code), Item.class);
+
+
+    }
+
 
 }

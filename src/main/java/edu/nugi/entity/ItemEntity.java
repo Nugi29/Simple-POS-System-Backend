@@ -39,6 +39,7 @@ public class ItemEntity {
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
     private CategoryEntity category;
+
     @OneToMany(mappedBy = "item")
     private Collection<OrderitemEntity> orderitems;
 

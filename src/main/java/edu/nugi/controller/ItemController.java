@@ -52,6 +52,11 @@ public class ItemController {
         return service.searchByCategory(categoryId);
     }
 
+    @GetMapping("/search-by-code/{code}")
+    public Item searchByCode(@PathVariable String code) {
+        return service.searchByCode(code);
+    }
+
 
 
 }
