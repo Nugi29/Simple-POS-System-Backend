@@ -1,38 +1,38 @@
 package edu.nugi.entity;
 
-import jakarta.persistence.*;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Objects;
-
 @Entity
 @Table(name = "orderitem")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 public class OrderitemEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-    @Basic
+
     @Column(name = "quantity")
     private Integer quantity;
-    @Basic
+
     @Column(name = "unitprice")
     private Double unitprice;
-    @Basic
+
     @Column(name = "subtotal")
     private Double subtotal;
+
     @ManyToOne
     @JoinColumn(name = "item_id", referencedColumnName = "id", nullable = false)
     private ItemEntity item;
+
+    @Getter(onMethod_ = @JsonIgnore)
     @ManyToOne
     @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
     private OrderEntity order;
-
-
 }

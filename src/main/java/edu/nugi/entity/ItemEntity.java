@@ -1,5 +1,6 @@
 package edu.nugi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -39,7 +40,6 @@ public class ItemEntity {
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
     private CategoryEntity category;
-
     @OneToMany(mappedBy = "item")
     private Collection<OrderitemEntity> orderitems;
 

@@ -1,9 +1,12 @@
 package edu.nugi.dto;
 
+import edu.nugi.entity.ItemEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -19,5 +22,6 @@ public class Order {
     private Customer customer;
     private Admin admin;
     private Paymentmethod paymentmethod;
+    private List<Item> items;
 
 }

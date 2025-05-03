@@ -13,10 +13,10 @@ public class Admin {
 
     private Integer id;
     private String name;
-    private String fullname;
-    private String role;
-    private String email;
-    private String password;
-    private String phone;
+//    private String fullname;
+//    private String role;
+//    private String email;
+//    private String password;
+//    private String phone;
 
 }
