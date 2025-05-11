@@ -16,4 +16,6 @@ public interface OrderService {
     Order searchById(Integer id);
 
     Order searchByCode(String code);
+
+    String getOrderCode();
 }

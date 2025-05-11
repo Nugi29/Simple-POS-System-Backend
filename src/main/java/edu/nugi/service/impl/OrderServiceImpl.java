@@ -6,9 +6,12 @@ import edu.nugi.repository.*;
 import edu.nugi.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,7 +81,7 @@ public class OrderServiceImpl implements OrderService {
         OrderEntity orderEntity = new OrderEntity();
 
         orderEntity.setCode(orderDto.getCode());
-        orderEntity.setDatetime(Timestamp.valueOf(orderDto.getDatetime()));
+        orderEntity.setDatetime(orderDto.getDatetime());
         orderEntity.setDiscount(orderDto.getDiscount());
         orderEntity.setTotal(orderDto.getTotal());
 
@@ -126,6 +129,12 @@ public class OrderServiceImpl implements OrderService {
     public Order searchByCode(String code) {
         return mapper.map(orderRepository.findByCode(code), Order.class);
     }
+
+    @Override
+    public String getOrderCode() {
+        return orderRepository.getLastOrderCode(String.valueOf(Year.now().getValue()));
+    }
+
 
     // ✅ Mapping Helpers
     private Customer mapCustomer(CustomerEntity customerEntity) {

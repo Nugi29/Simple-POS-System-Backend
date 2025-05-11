@@ -6,8 +6,7 @@ import lombok.*;
 
 @Entity
 @Table(name = "orderitem")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
@@ -31,7 +30,6 @@ public class OrderitemEntity {
     @JoinColumn(name = "item_id", referencedColumnName = "id", nullable = false)
     private ItemEntity item;
 
-    @Getter(onMethod_ = @JsonIgnore)
     @ManyToOne
     @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
     private OrderEntity order;

@@ -47,6 +47,11 @@ public class OrderController {
         return service.searchByCode(code);
     }
 
+    @GetMapping("/get-order-code")
+    public String getNextOrderCode() {
+        return service.getOrderCode();
+    }
+
 
 
 }

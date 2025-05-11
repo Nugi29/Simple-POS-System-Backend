@@ -27,7 +27,7 @@ public class OrderEntity {
 
     @Basic
     @Column(name = "datetime")
-    private Timestamp datetime;
+    private String datetime;
 
     @Basic
     @Column(name = "discount")
