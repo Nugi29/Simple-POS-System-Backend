@@ -1,5 +1,6 @@
 package edu.nugi.dto;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import edu.nugi.entity.ItemEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,6 +23,8 @@ public class Order {
     private Customer customer;
     private Admin admin;
     private Paymentmethod paymentmethod;
-    private List<Item> items;
+
+    @JsonManagedReference
+    private List<Orderitem> items;
 
 }

@@ -51,10 +51,19 @@ public class ItemController {
     public List<Item> searchByCategory(@PathVariable Integer categoryId) {
         return service.searchByCategory(categoryId);
     }
-
     @GetMapping("/search-by-code/{code}")
     public Item searchByCode(@PathVariable String code) {
         return service.searchByCode(code);
+    }
+
+    @GetMapping("/get-stock/{id}")
+    public Integer getStock(@PathVariable Integer id) {
+        return service.getStock(id);
+    }
+
+    @PutMapping("/update-stock/{id}/{stock}")
+    public void updateStock(@PathVariable Integer id, @PathVariable Integer stock) {
+        service.updateStock(id, stock);
     }
 
 

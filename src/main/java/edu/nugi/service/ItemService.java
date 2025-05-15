@@ -20,4 +20,8 @@ public interface ItemService {
     List<Item> searchByCategory(Integer categoryId);
 
     Item searchByCode(String code);
+
+    Integer getStock(Integer id);
+
+    void updateStock(Integer id, Integer stock);
 }

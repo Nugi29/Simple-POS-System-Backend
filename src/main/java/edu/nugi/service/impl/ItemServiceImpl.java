@@ -78,5 +78,26 @@ public class ItemServiceImpl implements ItemService {
 
     }
 
+    @Override
+    public Integer getStock(Integer id) {
+        ItemEntity itemEntity = repository.findById(id).orElse(null);
+        if (itemEntity != null) {
+            return itemEntity.getStock();
+        } else {
+            return 0;
+        }
+
+    }
+
+    @Override
+    public void updateStock(Integer id, Integer stock) {
+        ItemEntity itemEntity = repository.findById(id).orElse(null);
+        if (itemEntity != null) {
+            itemEntity.setStock(stock);
+            repository.save(itemEntity);
+        }
+
+    }
+
 
 }
