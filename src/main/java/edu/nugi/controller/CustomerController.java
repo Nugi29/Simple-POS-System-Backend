@@ -4,7 +4,6 @@ import edu.nugi.dto.Customer;
 import edu.nugi.dto.Order;
 import edu.nugi.service.CustomerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,8 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomerController {
 
-    @Autowired
-    CustomerService service;
+    final CustomerService service;
 
     @GetMapping("/get-all/list")
     public List<Customer> getAll() {
@@ -52,7 +50,4 @@ public class CustomerController {
     public List<Order> getCustomerOrderHistory(@PathVariable Integer id) {
         return service.getCustomerOrderHistory(id);
     }
-
-
-
 }

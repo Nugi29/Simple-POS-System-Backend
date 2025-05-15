@@ -3,7 +3,6 @@ package edu.nugi.controller;
 import edu.nugi.dto.Item;
 import edu.nugi.service.ItemService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,8 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ItemController {
 
-    @Autowired
-    ItemService service;
+    final ItemService service;
 
     @GetMapping("/get-all/list")
     public List<Item> getAll() {
