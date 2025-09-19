@@ -46,7 +46,9 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public Item searchById(Integer id) {
-        return mapper.map(repository.findById(id), Item.class);
+        return repository.findById(id)
+                .map(entity -> mapper.map(entity, Item.class))
+                .orElse(null);
     }
 
     @Override
@@ -73,8 +75,8 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public Item searchByCode(String code) {
-        return mapper.map(repository.findByCode(code), Item.class);
-
+        ItemEntity entity = repository.findByCode(code);
+        return entity != null ? mapper.map(entity, Item.class) : null;
 
     }
 
@@ -98,6 +100,5 @@ public class ItemServiceImpl implements ItemService {
         }
 
     }
-
 
 }

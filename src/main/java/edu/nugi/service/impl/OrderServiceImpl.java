@@ -1,13 +1,5 @@
 package edu.nugi.service.impl;
 
-import edu.nugi.dto.*;
-import edu.nugi.entity.*;
-import edu.nugi.repository.*;
-import edu.nugi.service.OrderService;
-import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
-import org.springframework.stereotype.Service;
-
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.Year;
@@ -15,6 +7,31 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
+
+import edu.nugi.dto.Admin;
+import edu.nugi.dto.Category;
+import edu.nugi.dto.Customer;
+import edu.nugi.dto.Item;
+import edu.nugi.dto.Order;
+import edu.nugi.dto.Orderitem;
+import edu.nugi.dto.Paymentmethod;
+import edu.nugi.entity.AdminEntity;
+import edu.nugi.entity.CategoryEntity;
+import edu.nugi.entity.CustomerEntity;
+import edu.nugi.entity.ItemEntity;
+import edu.nugi.entity.OrderEntity;
+import edu.nugi.entity.OrderitemEntity;
+import edu.nugi.entity.PaymentmethodEntity;
+import edu.nugi.repository.AdminRepository;
+import edu.nugi.repository.CustomerRepository;
+import edu.nugi.repository.ItemRepository;
+import edu.nugi.repository.OrderRepository;
+import edu.nugi.repository.PaymentmethodRepository;
+import edu.nugi.service.OrderService;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -44,8 +61,7 @@ public class OrderServiceImpl implements OrderService {
                         // Create the Category for the Item
                         Category category = new Category(
                                 categoryEntity.getId(),
-                                categoryEntity.getName()
-                        );
+                                categoryEntity.getName());
 
                         // Create the Item for the OrderItem
                         Item item = new Item(
@@ -56,8 +72,7 @@ public class OrderServiceImpl implements OrderService {
                                 itemEntity.getDiscount(),
                                 String.valueOf(itemEntity.getStock()),
                                 itemEntity.getDoexpire().toString(),
-                                category
-                        );
+                                category);
 
                         // Create the OrderItem with the Item and the quantity information
                         return new Orderitem(
@@ -66,7 +81,7 @@ public class OrderServiceImpl implements OrderService {
                                 orderItemEntity.getUnitprice(),
                                 orderItemEntity.getSubtotal(),
                                 item,
-                                null  // We don't set the order here to avoid circular reference
+                                null // We don't set the order here to avoid circular reference
                         );
                     })
                     .toList();
@@ -127,7 +142,8 @@ public class OrderServiceImpl implements OrderService {
         AdminEntity adminEntity = adminRepository.findById(orderDto.getAdmin().getId()).orElse(null);
         orderEntity.setAdmin(adminEntity);
 
-        PaymentmethodEntity paymentEntity = paymentmethodRepository.findById(orderDto.getPaymentmethod().getId()).orElse(null);
+        PaymentmethodEntity paymentEntity = paymentmethodRepository.findById(orderDto.getPaymentmethod().getId())
+                .orElse(null);
         orderEntity.setPaymentmethod(paymentEntity);
 
         // Calculate total and create order items
@@ -194,7 +210,8 @@ public class OrderServiceImpl implements OrderService {
 
             // Update customer if provided
             if (orderDto.getCustomer() != null && orderDto.getCustomer().getId() != null) {
-                CustomerEntity customerEntity = customerRepository.findById(orderDto.getCustomer().getId()).orElse(null);
+                CustomerEntity customerEntity = customerRepository.findById(orderDto.getCustomer().getId())
+                        .orElse(null);
                 if (customerEntity != null) {
                     existingOrder.setCustomer(customerEntity);
                 }
@@ -210,7 +227,8 @@ public class OrderServiceImpl implements OrderService {
 
             // Update payment method if provided
             if (orderDto.getPaymentmethod() != null && orderDto.getPaymentmethod().getId() != null) {
-                PaymentmethodEntity paymentEntity = paymentmethodRepository.findById(orderDto.getPaymentmethod().getId()).orElse(null);
+                PaymentmethodEntity paymentEntity = paymentmethodRepository
+                        .findById(orderDto.getPaymentmethod().getId()).orElse(null);
                 if (paymentEntity != null) {
                     existingOrder.setPaymentmethod(paymentEntity);
                 }
@@ -276,11 +294,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order searchByCode(String code) {
-        Order orderEntity = orderRepository.findByCode(code);
-//        if (orderEntity != null) {
-//            return mapOrderEntityToDto(orderEntity);
-//        }
-        return orderEntity;
+        OrderEntity orderEntity = orderRepository.findByCode(code);
+        if (orderEntity != null) {
+            return mapOrderEntityToDto(orderEntity);
+        }
+        return null;
     }
 
     @Override
@@ -334,8 +352,7 @@ public class OrderServiceImpl implements OrderService {
                     // Create the Category for the Item
                     Category category = new Category(
                             categoryEntity.getId(),
-                            categoryEntity.getName()
-                    );
+                            categoryEntity.getName());
 
                     // Create the Item for the OrderItem
                     Item item = new Item(
@@ -346,8 +363,7 @@ public class OrderServiceImpl implements OrderService {
                             itemEntity.getDiscount(),
                             String.valueOf(itemEntity.getStock()),
                             itemEntity.getDoexpire().toString(),
-                            category
-                    );
+                            category);
 
                     // Create the OrderItem with the Item and the quantity information
                     return new Orderitem(
@@ -356,7 +372,7 @@ public class OrderServiceImpl implements OrderService {
                             orderItemEntity.getUnitprice(),
                             orderItemEntity.getSubtotal(),
                             item,
-                            null  // We don't set the order here to avoid circular reference
+                            null // We don't set the order here to avoid circular reference
                     );
                 })
                 .toList();
@@ -380,21 +396,18 @@ public class OrderServiceImpl implements OrderService {
                 customerEntity.getEmail(),
                 customerEntity.getPhone(),
                 customerEntity.getLoyaltypoints(),
-                customerEntity.getPreferences()
-        );
+                customerEntity.getPreferences());
     }
 
     private Paymentmethod mapPayment(PaymentmethodEntity entity) {
         return new Paymentmethod(
                 entity.getId(),
-                entity.getName()
-        );
+                entity.getName());
     }
 
     private Admin mapAdmin(AdminEntity entity) {
         return new Admin(
                 entity.getId(),
-                entity.getName()
-        );
+                entity.getName());
     }
 }
