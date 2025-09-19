@@ -1,0 +1,89 @@
+# === Java / Maven / Spring Boot backend .gitignore ===
+# Build outputs
+/target/
+**/target/
+
+
+# Maven specific
+pom.xml.versionsBackup
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# Test reports
+surefire-reports/
+failsafe-reports/
+
+# Generated sources and build metadata
+/generated-sources/
+/generated-test-sources/
+/maven-status/
+/maven-archiver/
+
+# Compiled class files
+*.class
+
+# Logs
+logs/
+*.log
+*.log.*
+spring.log
+
+# JVM crash logs
+hs_err_pid*
+replay_pid*
+*.hprof
+
+# Coverage and reports
+jacoco*.exec
+site/
+
+# Operating system
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Editors/IDEs
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Eclipse / STS
+.project
+.classpath
+.settings/
+.springBeans
+.sts4-cache/
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# VS Code
+.vscode/
+
+# Node/Frontend artifacts accidentally placed in backend
+node_modules/
+
+# Local environment/config files (keep base configs tracked)
+.env
+.env.*
+*.local.properties
+src/main/resources/application-local.properties
+src/main/resources/application-local.yml
+
+# Patch/backup/editor temp files
+*~
+*.swp
+*.swo
+*.orig
+*.rej
